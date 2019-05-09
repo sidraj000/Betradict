@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "604408055224",
+    "firebase_url": "https://betradict-af789.firebaseio.com",
+    "project_id": "betradict-af789",
+    "storage_bucket": "betradict-af789.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604408055224:android:bb30ced700c55e7f",
+        "android_client_info": {
+          "package_name": "com.example.betradict"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604408055224-o3eut2oro14un56i32ktnk15mq0dclm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.betradict",
+            "certificate_hash": "cd0bf6d91925a006c2347fa3a2e274548c1fbad2"
+          }
+        },
+        {
+          "client_id": "604408055224-aef8an1phh5so09d99ufjg2rcv8jdvi1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcu5cI_q9uSDzNTypYejENf0OXHrZqNH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604408055224-aef8an1phh5so09d99ufjg2rcv8jdvi1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
