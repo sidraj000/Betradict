@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/appbg"
+    tools:context=".write_quest">
+
+    <EditText
+        android:id="@+id/tvId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="200dp"
+        android:ems="10"
+        android:hint="Id"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/tvGId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="200dp"
+        android:ems="10"
+        android:hint="GameId"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ptQues"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:hint="Question"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/ptGame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/ptOpt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="150dp"
+        android:ems="10"
+        android:hint="Option1"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ptOpt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="150dp"
+        android:ems="10"
+        android:hint="Option2"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ptOpt3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="150dp"
+        android:ems="10"
+        android:hint="Option3"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tvQuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btnSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Preview"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="EDIT"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

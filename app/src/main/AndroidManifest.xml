@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.betradict">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,14 +11,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".login_act">
+        <activity android:name=".transition_act.transfrag5"></activity>
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".trans_prevmatchList" />
+        <activity android:name=".trans_prevMatches" />
+        <activity android:name=".transition_act.trans_adminmsgs" />
+        <activity android:name=".transition_act.trans_adminMList" />
+        <activity android:name=".transition_act.transSupport" />
+        <activity android:name=".admin.addQuest" />
+        <activity android:name=".addDynamic" />
+        <activity android:name=".postMatchList" />
+        <activity android:name=".transition_act.trans_leader" />
+        <activity android:name=".wallet_click" />
+        <activity android:name=".transition_act.transUpdateWall" />
+        <activity android:name=".wallet_trans" />
+        <activity android:name=".admin.addEvent" />
+        <activity android:name=".transition_act.trans_activity" />
+        <activity android:name=".sports_list" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".login_act" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Home_Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

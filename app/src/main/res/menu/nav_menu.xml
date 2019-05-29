@@ -1,11 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home"
-        android:title="Home">
+        android:title="Home"
+        android:fontFamily="@font/aldrich">
      </item>
-    <item android:id="@+id/setting"
-        android:title="Setting">
+    <item
+        android:id="@+id/leader_board"
+        android:title="Leader Board"
+        android:fontFamily="@font/aldrich">
     </item>
+    <item
+        android:id="@+id/wallet"
+        android:title="Wallet"
+        android:fontFamily="@font/aldrich"></item>
+    <item
+        android:id="@+id/prevml"
+        android:title="Previous Matches"
+        android:fontFamily="@font/aldrich"></item>
+    <item
+        android:id="@+id/support"
+        android:title="Support"
+        android:fontFamily="@font/aldrich"></item>
+
     <item android:id="@+id/logout"
-        android:title="LogOut"></item>
+        android:title="LogOut"
+        android:fontFamily="@font/aldrich"></item>
+    <item
+          android:id="@+id/write_quest"
+          android:title="Add Quest"
+          android:fontFamily="@font/aldrich"></item>
+    <item
+          android:id="@+id/addDynamic"
+          android:title="Add Dynamic"
+          android:fontFamily="@font/aldrich"></item>
+    <item
+          android:id="@+id/addEvent"
+          android:title="Add Event"
+          android:fontFamily="@font/aldrich">
+      </item>
+      <item
+          android:id="@+id/suppA"
+          android:title="Support Admin"
+          android:fontFamily="@font/aldrich">
+      </item>
+
 </menu>

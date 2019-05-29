@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".wallet_click">
+
+    <TextView
+        android:id="@+id/wdDet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdMatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/wdDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/wdQuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdO1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdO2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdO3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdBid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdMans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/wdCans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deposied Amt for"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+</LinearLayout>
