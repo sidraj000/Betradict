@@ -119,8 +119,7 @@ public class frag4 extends Fragment {
         Button btn1;
         Button btn2;
         Button btn3;
-        Button btnWorth;
-        ImageView ivStatus;
+        ImageView ivStatus,btnWorth;
 
         public FriendViewHolder(View itemView) {
             super(itemView);

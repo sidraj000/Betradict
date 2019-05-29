@@ -153,7 +153,7 @@ public class addEvent extends AppCompatActivity {
                AllQuest allQuest16=new AllQuest("Which team will hit more half centuries?",teama,teamb,"TIE","Q16", new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
                AllQuest allQuest17=new AllQuest("Which team will hit more centuries?",teama,teamb,"TIE","Q17", new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
                AllQuest allQuest18=new AllQuest("Which team will use more number of bowlers in their attack?",teama,teamb,"TIE","Q18", new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
-               AllQuest allQuest19=new AllQuest("Which team will bowl more number of balls?",teama,teamb,"TIE","Q19", new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
+               AllQuest allQuest19=new AllQuest("Which team will bowl more number of no balls?",teama,teamb,"TIE","Q19", new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
                AllQuest allQuest20=new AllQuest("Which team will bowl more wide balls?",teama,teamb,"TIE","Q20", new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
                Quest quest1 = new Quest("Which team will win the match?", teama,teamb,"TIE", "Q1", 0, 0,0, "U", "U");
                Quest quest2= new Quest("Which team will have the leading run scorer?", teama,teamb,"TIE", "Q2", 0, 0,0, "U", "U");
@@ -173,7 +173,7 @@ public class addEvent extends AppCompatActivity {
                Quest quest16 = new Quest("Which team will hit more half centuries?", teama,teamb,"TIE", "Q16", 0, 0,0, "U", "U");
                Quest quest17 = new Quest("Which team will hit more centuries?", teama,teamb,"TIE", "Q17", 0, 0,0, "U", "U");
                Quest quest18 = new Quest("Which team will use more number of bowlers in their attack?", teama,teamb,"TIE", "Q18", 0, 0,0, "U", "U");
-               Quest quest19 = new Quest("Which team will bowl more number of balls?", teama,teamb,"TIE", "Q19", 0, 0,0, "U", "U");
+               Quest quest19 = new Quest("Which team will bowl more number of no balls?", teama,teamb,"TIE", "Q19", 0, 0,0, "U", "U");
                Quest quest20 = new Quest("Which team will bowl more wide balls?", teama,teamb,"TIE", "Q20", 0, 0,0, "U", "U");
                DatabaseReference mD=FirebaseDatabase.getInstance().getReference();
                mD.child("quest").child("cricket").child(id).child("normal").child("Q1").setValue(allQuest1);

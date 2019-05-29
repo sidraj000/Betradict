@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -115,14 +115,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp">
 
-                <Button
+                <ImageView
                     android:id="@+id/btnWorth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/aldrich"
+                    android:src="@drawable/worth"
+                    android:clickable="true"
                     android:layout_marginLeft="180dp"
                     android:text="WORTH" />
 

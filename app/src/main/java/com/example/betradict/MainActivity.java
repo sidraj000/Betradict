@@ -39,7 +39,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ImageView one,two,three,four,five;
-    FloatingActionButton btnToggle;
+    ImageView btnToggle;
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
     private FirebaseAuth mAuth;
@@ -68,17 +68,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
        arr =getIntent().getExtras();
         final String[] data=arr.getStringArray("details");
+        if(data[2].equals("normal"))
+        {
+            btnToggle.setImageResource(R.drawable.in);
+        }
+        else {
+            btnToggle.setImageResource(R.drawable.back);
+        }
         btnToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(data[2].equals("normal"))
                 {
-                    Toast.makeText(MainActivity.this, "hii", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(MainActivity.this, "hii", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(MainActivity.this,MainActivity.class);
                     data[2]="live";
-
                     intent.putExtra("details",data);
                    startActivity(intent);
+                   finish();
+                }
+                else if(data[2].equals("live"))
+                {
+                    Intent intent=new Intent(MainActivity.this,MainActivity.class);
+                    data[2]="normal";
+                    intent.putExtra("details",data);
+                    startActivity(intent);
+                    finish();
                 }
 
             }

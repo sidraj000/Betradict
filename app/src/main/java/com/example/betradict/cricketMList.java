@@ -244,7 +244,14 @@ public class cricketMList extends Fragment {
                         long minutes = seconds / 60;
                         long hours = minutes / 60;
                         long days = hours / 24;
-                        String time = days + " " + "days" + " :" + hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
+                        String time;
+                        if(days>0)
+                        {
+                          time=days + " " + "days" + " :" + hours % 24;
+                        }
+                        else {
+                             time = hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
+                        }
                         cViewHolder.tvCounter.setText(time);
                     }
 
@@ -256,8 +263,8 @@ public class cricketMList extends Fragment {
                 cViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            Intent intent = new Intent(mContext, postMatchList.class);
-                            String arr[] = {"cricket", mCMatch.get(k).id};
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            String arr[] = {"cricket", mCMatch.get(k).id,"normal"};
                             intent.putExtra("details", arr);
                             startActivity(intent);
 
