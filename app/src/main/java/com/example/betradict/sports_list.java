@@ -92,7 +92,7 @@ public class sports_list extends AppCompatActivity implements NavigationView.OnN
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        if(id==R.id.suppA)
+  /*      if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -114,7 +114,7 @@ public class sports_list extends AppCompatActivity implements NavigationView.OnN
             startActivity(new Intent(this, addDynamic.class));
             finish();
         }
-
+*/
 
         return false;
     }

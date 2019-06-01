@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#B2DFDB"
     app:cardCornerRadius="5dp"
     android:layout_margin="5dp">
 
@@ -21,7 +20,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
-            android:background="#a7e2c4"
+            android:background="#CFD8DC"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                 android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textSize="20dp"
-                android:textColor="#591451"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/aQuest"
                 />
             <TextView

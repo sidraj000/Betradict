@@ -189,7 +189,8 @@ public class frag3 extends Fragment {
                             // Update the RecyclerView
                             notifyItemChanged(userIndex);
                         } else {
-                            Log.w(TAG, "onChildChanged:unknown_child:" + userKey);
+                            mQuest.add(quest);
+                            mQuestIds.add(userKey);
                         }
                     }
                     // [END_EXCLUDE]
@@ -273,6 +274,8 @@ public class frag3 extends Fragment {
             friendViewHolder.tvAns.setText("My Ans: "+quest.myans);
             friendViewHolder.tvRate.setText("My Rate: "+Float.toString(quest.myrate));
             friendViewHolder.tvAmt.setText("My Amount "+Float.toString(quest.mybid));
+
+
             DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid).child("quest_wall");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override

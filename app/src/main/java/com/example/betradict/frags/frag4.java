@@ -9,11 +9,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +30,7 @@ import com.example.betradict.Class.Usrwal;
 import com.example.betradict.Class.Wallet;
 import com.example.betradict.Class.Quest_wall;
 import com.example.betradict.R;
+import com.example.betradict.SnapHelperByOne;
 import com.example.betradict.transactions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +40,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
@@ -43,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import static android.support.constraint.Constraints.TAG;
 import static java.lang.Integer.parseInt;
@@ -64,6 +70,9 @@ public class frag4 extends Fragment {
     public Bundle b;
     public String arr[];
     public TextView  tvEmpt;
+    public float rr;
+    Animation animation;
+    ImageView ivAnime;
 
     final String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -76,7 +85,7 @@ public class frag4 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frag4, container, false);
         mRecycler = view.findViewById(R.id.questList);
         muser = FirebaseAuth.getInstance().getCurrentUser();
@@ -84,12 +93,17 @@ public class frag4 extends Fragment {
         arr=b.getStringArray("details");
         mFriendsReference = FirebaseDatabase.getInstance().getReference()
                 .child("quest_usr").child(muser.getUid()).child(arr[0]).child(arr[1]).child(arr[2]);
-        mManager = new LinearLayoutManager(getContext());
+        mManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        LinearSnapHelper linearSnapHelper = new SnapHelperByOne();
+        linearSnapHelper.attachToRecyclerView(mRecycler);
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(mManager);
         tvEmpt=view.findViewById(R.id.qE);
+        ivAnime=view.findViewById(R.id.ivanime);
+        animation= AnimationUtils.loadAnimation(getContext(),R.anim.rotate);
+
 
 
         return view;
@@ -102,6 +116,9 @@ public class frag4 extends Fragment {
 
         mAdapter = new FriendAdapter(getContext(), mFriendsReference);
         mRecycler.setAdapter(mAdapter);
+     //   ivAnime.startAnimation(animation);
+
+        //  ivAnime.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -119,6 +136,7 @@ public class frag4 extends Fragment {
         Button btn1;
         Button btn2;
         Button btn3;
+
         ImageView ivStatus,btnWorth;
 
         public FriendViewHolder(View itemView) {
@@ -151,8 +169,7 @@ public class frag4 extends Fragment {
         public FriendAdapter(final Context context, DatabaseReference ref) {
             mContext = context;
             mDatabaseReference = ref;
-
-
+            Query query=ref.orderByChild("myans");
             ChildEventListener childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
@@ -237,7 +254,7 @@ public class frag4 extends Fragment {
 
                 }
             };
-            ref.addChildEventListener(childEventListener);
+            query.addChildEventListener(childEventListener);
             mChildEventListener = childEventListener;
 
       DatabaseReference md1=FirebaseDatabase.getInstance().getReference().child("users").child(uId);
@@ -273,6 +290,11 @@ public class frag4 extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final FriendViewHolder friendViewHolder, int i) {
             final Quest quest = mQuest.get(i);
+            if(i==(mQuest.size()-1))
+            {
+                ivAnime.setVisibility(View.GONE);
+                ivAnime.clearAnimation();
+            }
 
            tvEmpt.setVisibility(View.GONE);
             friendViewHolder.tvquest.setText(quest.ques);
@@ -303,11 +325,39 @@ public class frag4 extends Fragment {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Quest_wall q=dataSnapshot.getValue(Quest_wall.class);
-                            float rate1 = 0, rate2 = 0, rate3 = 0;
+                            float rate1=0,rate2=0,rate3=0;
 
-                            rate1=q.ctbids1/q.cbids1;
-                            rate2=q.ctbids2/q.cbids2;
-                            rate3=q.ctbids3/q.cbids3;
+
+                            if(q.ctbids1/q.cbids1==1)
+                            {
+                                Random r = new Random();
+                                int ret = r.nextInt(20 + 1);
+                                rate1=(float)((ret/100.0)+1.3);
+                            }
+                            else
+                            {
+                                rate1=q.ctbids1/q.cbids1;
+                            }
+                            if(q.ctbids2/q.cbids2==1)
+                            {
+                                Random r = new Random();
+                                int ret = r.nextInt(20 + 1);
+                                rate2=(float)((ret/100.0)+1.3);
+                            }
+                            else
+                            {
+                                rate2=q.ctbids2/q.cbids2;
+                            }
+                            if(q.ctbids3/q.cbids3==1)
+                            {
+                                Random r = new Random();
+                                int ret = r.nextInt(20 + 1);
+                                rate3=(float)((ret/100.0)+1.3);
+                            }
+                            else
+                            {
+                                rate3=q.ctbids3/q.cbids3;
+                            }
 
 
 
@@ -328,34 +378,41 @@ public class frag4 extends Fragment {
                 }
             });
 
-            if (quest.status == 1) {
+
              //   friendViewHolder.ivStatus.setVisibility(View.VISIBLE);
                 friendViewHolder.etAmt.setVisibility(View.GONE);
                 if(quest.myans.equals("A"))
                 {
-                    friendViewHolder.btn1.setBackgroundColor(Color.BLUE);
-                    friendViewHolder.btn2.setBackgroundColor(0xFF42ACA8);
-                    friendViewHolder.btn3.setBackgroundColor(0xFF42ACA8);
+                    friendViewHolder.btn1.setBackgroundColor(getResources().getColor(R.color.answered));
+                    friendViewHolder.btn2.setBackgroundColor(getResources().getColor(R.color.unanswered));
+                    friendViewHolder.btn3.setBackgroundColor(getResources().getColor(R.color.unanswered));
                 }
                 else if(quest.myans.equals("B"))
                 {
-                    friendViewHolder.btn1.setBackgroundColor(0xFF42ACA8);
-                    friendViewHolder.btn2.setBackgroundColor(Color.BLUE);
-                    friendViewHolder.btn3.setBackgroundColor(0xFF42ACA8);
+
+                    friendViewHolder.btn1.setBackgroundColor(getResources().getColor(R.color.unanswered));
+                    friendViewHolder.btn2.setBackgroundColor(getResources().getColor(R.color.answered));
+                    friendViewHolder.btn3.setBackgroundColor(getResources().getColor(R.color.unanswered));
                 }
                 else if(quest.myans.equals("C"))
                 {
-                    friendViewHolder.btn1.setBackgroundColor(0xFF42ACA8);
-                    friendViewHolder.btn2.setBackgroundColor(0xFF42ACA8);
-                    friendViewHolder.btn3.setBackgroundColor(Color.BLUE);
+
+                    friendViewHolder.btn1.setBackgroundColor(getResources().getColor(R.color.unanswered));
+                    friendViewHolder.btn2.setBackgroundColor(getResources().getColor(R.color.unanswered));
+                    friendViewHolder.btn3.setBackgroundColor(getResources().getColor(R.color.answered));
+                }
+                else
+                {
+
+                    friendViewHolder.btn1.setBackgroundColor(getResources().getColor(R.color.unanswered));
+                    friendViewHolder.btn2.setBackgroundColor(getResources().getColor(R.color.unanswered));
+                    friendViewHolder.btn3.setBackgroundColor(getResources().getColor(R.color.unanswered));
                 }
 
-            } else{
+          if(quest.status==0)
+          {
              //   friendViewHolder.ivStatus.setVisibility(View.GONE);
                 friendViewHolder.etAmt.setVisibility(View.VISIBLE);
-                friendViewHolder.btn1.setBackgroundColor(0xFF42ACA8);
-                friendViewHolder.btn2.setBackgroundColor(0xFF42ACA8);
-                friendViewHolder.btn3.setBackgroundColor(0xFF42ACA8);
             }
             friendViewHolder.btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -381,13 +438,9 @@ public class frag4 extends Fragment {
                     }
                         else
                      {
-                        float myrate=quest_wall.ctbids1/quest_wall.cbids1;
-                        Quest qust = new Quest(quest.ques, quest.opt1, quest.opt2, quest.opt3, quest.qid, 1, parseInt(friendViewHolder.etAmt.getText().toString()),myrate, "A", quest.cans);
-                        mDatabase.child("quest_usr").child(uId).child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid).setValue(qust);
-                        updatequest(qust.mybid, "A", quest.qid,mDatabase.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid));
-                        updatewallet(qust.mybid,quest.qid);
-                        Usrwal usr = new Usrwal(uId, parseInt(friendViewHolder.etAmt.getText().toString()),myrate,0);
-                        mDatabase.child("quest_opt").child(arr[0]).child(arr[1]).child(arr[2]).child(qust.qid).child("A").child(uId).setValue(usr);
+                         ivAnime.startAnimation(animation);
+                         ivAnime.setVisibility(View.VISIBLE);
+                       updatequest(parseInt(friendViewHolder.etAmt.getText().toString()), "A", quest.qid,mDatabase.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid));
 
 
                     }
@@ -417,15 +470,9 @@ public class frag4 extends Fragment {
 
                     }
                     else {
-                        float myrate=quest_wall.ctbids2/quest_wall.cbids2;
-                        Quest qust = new Quest(quest.ques, quest.opt1, quest.opt2, quest.opt3, quest.qid, 1, parseInt(friendViewHolder.etAmt.getText().toString()),myrate, "B", quest.cans);
-                        mDatabase.child("quest_usr").child(uId).child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid).setValue(qust);
-                        updatequest(qust.mybid, "B", quest.qid,mDatabase.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid));
-                        // User us = new User(finalUsr.username, finalUsr.email, finalUsr.picId, finalUsr.uid, finalUsr.wallet - parseInt(friendViewHolder.etAmt.getText().toString()));
-                        updatewallet(qust.mybid,quest.qid);
-                        Usrwal usr = new Usrwal(uId, parseInt(friendViewHolder.etAmt.getText().toString()),myrate,0);
-
-                        mDatabase.child("quest_opt").child(arr[0]).child(arr[1]).child(arr[2]).child(qust.qid).child("B").child(uId).setValue(usr);
+                        ivAnime.startAnimation(animation);
+                        ivAnime.setVisibility(View.VISIBLE);
+                        updatequest(parseInt(friendViewHolder.etAmt.getText().toString()), "B", quest.qid,mDatabase.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid));
 
 
 
@@ -456,16 +503,9 @@ public class frag4 extends Fragment {
 
                     }
                     else {
-                        float myrate=quest_wall.ctbids1/quest_wall.cbids1;
-                        Quest qust = new Quest(quest.ques, quest.opt1, quest.opt2, quest.opt3, quest.qid, 1, parseInt(friendViewHolder.etAmt.getText().toString()), myrate,"C", quest.cans);
-                        mDatabase.child("quest_usr").child(uId).child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid).setValue(qust);
-                        updatequest(qust.mybid, "C", quest.qid,mDatabase.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid));
-                        // User us = new User(finalUsr.username, finalUsr.email, finalUsr.picId, finalUsr.uid, finalUsr.wallet - parseInt(friendViewHolder.etAmt.getText().toString()));
-                        updatewallet(qust.mybid,quest.qid);
-                        Usrwal usr = new Usrwal(uId, parseInt(friendViewHolder.etAmt.getText().toString()),myrate,0);
-
-                        mDatabase.child("quest_opt").child(arr[0]).child(arr[1]).child(arr[2]).child(qust.qid).child("C").child(uId).setValue(usr);
-
+                        ivAnime.startAnimation(animation);
+                        ivAnime.setVisibility(View.VISIBLE);
+                        updatequest(parseInt(friendViewHolder.etAmt.getText().toString()), "C", quest.qid,mDatabase.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(quest.qid));
 
 
                     }
@@ -479,6 +519,9 @@ public class frag4 extends Fragment {
 
         @Override
         public int getItemCount() {
+
+
+
             return mQuest.size();
         }
         public void updatequest(final float bid,final String opt,final String qid,final DatabaseReference mD)
@@ -495,29 +538,78 @@ public class frag4 extends Fragment {
                     else {
                         if(opt.equals("A"))
                         {
+                            rr=allQuest.quest_wall.ctbids1/allQuest.quest_wall.cbids1;
+                            if(rr==1)
+                            {
+                                Random r = new Random();
+                                int ret = r.nextInt(20 + 1);
+                                rr=(float)((ret/100.0)+1.3);
+                            }
                             allQuest.quest_wall.bids1=allQuest.quest_wall.bids1+bid;
                             allQuest.quest_wall.cbids1=bid;
                             allQuest.quest_wall.ctbids1=bid;
                             allQuest.quest_wall.ctbids2=allQuest.quest_wall.ctbids2+bid;
                             allQuest.quest_wall.ctbids3=allQuest.quest_wall.ctbids3+bid;
+                            Quest qust = new Quest(allQuest.ques, allQuest.opt1, allQuest.opt2, allQuest.opt3, allQuest.qid, 1, bid,rr, "A", allQuest.quest_wall.ans);
+                           DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
+                            mDatabase.child("quest_usr").child(uId).child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).setValue(qust);
+
+                            updatewallet(bid,allQuest.qid);
+                            Usrwal usr = new Usrwal(uId,bid,rr,0);
+                            mDatabase.child("quest_opt").child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).child("A").child(uId).setValue(usr);
+
                             mutableData.setValue(allQuest);
                             return (Transaction.success(mutableData));
                         }
                        else if(opt.equals("B"))
                         {
+
+                            rr=allQuest.quest_wall.ctbids2/allQuest.quest_wall.cbids2;
+
+                            if(rr==1)
+                            {
+                                Random r = new Random();
+                                int ret = r.nextInt(20 + 1);
+                                rr=(float)((ret/100.0)+1.3);
+                            }
                             allQuest.quest_wall.bids2=allQuest.quest_wall.bids2+bid;
                             allQuest.quest_wall.ctbids2=bid;
                             allQuest.quest_wall.cbids2=bid;
                             allQuest.quest_wall.ctbids3=allQuest.quest_wall.ctbids3+bid;
                             allQuest.quest_wall.ctbids1=allQuest.quest_wall.ctbids1+bid;
+                            Quest qust = new Quest(allQuest.ques, allQuest.opt1, allQuest.opt2, allQuest.opt3, allQuest.qid, 1, bid,rr, "B", allQuest.quest_wall.ans);
+                            DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
+                            mDatabase.child("quest_usr").child(uId).child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).setValue(qust);
+
+                            updatewallet(bid,allQuest.qid);
+                            Usrwal usr = new Usrwal(uId,bid,rr,0);
+                            mDatabase.child("quest_opt").child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).child("B").child(uId).setValue(usr);
+
                             mutableData.setValue(allQuest);
                             return (Transaction.success(mutableData));
                         }
                        else
                         {
+
+                            rr=allQuest.quest_wall.ctbids3/allQuest.quest_wall.cbids3;
+                            if(rr==1)
+                            {
+                                Random r = new Random();
+                                int ret = r.nextInt(20 + 1);
+                                rr=(float)((ret/100.0)+1.3);
+                            }
+
                             allQuest.quest_wall.bids3=allQuest.quest_wall.bids3+bid;
                             allQuest.quest_wall.ctbids3=bid;
                             allQuest.quest_wall.cbids3=bid;
+                            Quest qust = new Quest(allQuest.ques, allQuest.opt1, allQuest.opt2, allQuest.opt3, allQuest.qid, 1, bid,rr, "C", allQuest.quest_wall.ans);
+                            DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
+                            mDatabase.child("quest_usr").child(uId).child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).setValue(qust);
+
+                            updatewallet(bid,allQuest.qid);
+                            Usrwal usr = new Usrwal(uId,bid,rr,0);
+                            mDatabase.child("quest_opt").child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).child("C").child(uId).setValue(usr);
+
                             mutableData.setValue(allQuest);
                             return (Transaction.success(mutableData));
                         }
@@ -567,6 +659,8 @@ public class frag4 extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
 
+                    ivAnime.setVisibility(View.GONE);
+                    ivAnime.clearAnimation();
                 }
             });
         }

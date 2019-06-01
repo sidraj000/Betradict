@@ -40,6 +40,7 @@ import java.util.Date;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
+import static java.lang.Integer.max;
 import static java.lang.Integer.parseInt;
 
 
@@ -246,9 +247,10 @@ public class update_wallet extends Fragment {
             if(mAllQuest.get(i).quest_wall.wStatus==1)
             {
                 friendViewHolder.btnWallet.setVisibility(View.GONE);
+                friendViewHolder.tvProfit.setText(Float.toString(mAllQuest.get(i).quest_wall.profit));
             }
             else {
-
+                friendViewHolder.btnWallet.setVisibility(View.VISIBLE);
                 friendViewHolder.tvquest.setText(mAllQuest.get(i).ques);
                 friendViewHolder.tvBids1.setText(Float.toString(mAllQuest.get(i).quest_wall.bids1));
                 friendViewHolder.tvBids2.setText(Float.toString(mAllQuest.get(i).quest_wall.bids2));
@@ -296,7 +298,7 @@ public class update_wallet extends Fragment {
                                         amt = amt + add;
                                         updatewallet(add, u.uid, mAllQuest.get(k).qid);
                                         DatabaseReference sd = FirebaseDatabase.getInstance().getReference();
-                                        sd.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("quest_wall").child("wStatus").setValue(mAllQuest);
+                                        sd.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("quest_wall").child("wStatus").setValue(1);
 
 
                                     }

@@ -345,6 +345,12 @@ public class Add_answers extends Fragment {
                     ansViewHolder.ansConfirm.setText("Ans: On Hold");
                     ansViewHolder.ansConfirm.setVisibility(View.VISIBLE);
                     ansViewHolder.btnHold.setVisibility(View.GONE);
+                    ansViewHolder.ans1.setVisibility(View.VISIBLE);
+                    ansViewHolder.ans2.setVisibility(View.VISIBLE);
+                    ansViewHolder.ans3.setVisibility(View.VISIBLE);
+                    ansViewHolder.ans4.setVisibility(View.VISIBLE);
+                    ansViewHolder.btnConfirm.setVisibility(View.GONE);
+                    ansViewHolder.btnRe.setVisibility(View.GONE);
 
                 }
                 else if(allQuest.quest_wall.ans.equals("A"))
@@ -404,6 +410,7 @@ public class Add_answers extends Fragment {
                     ansViewHolder.ansConfirm.setVisibility(View.GONE);
                     ansViewHolder.btnConfirm.setVisibility(View.VISIBLE);
                     ansViewHolder.btnRe.setVisibility(View.GONE);
+                    ansViewHolder.btnHold.setVisibility(View.VISIBLE);
                 }
 
                 ansViewHolder.ans1.setOnClickListener(new View.OnClickListener() {
@@ -537,7 +544,15 @@ public class Add_answers extends Fragment {
                         {
                             mDatabaseReference.child("quest_usr").child(mUser.get(p).per.uid).child(arr[0]).child(arr[1]).child(arr[2]).child(allQuest.qid).child("cans").setValue("H");
                         }
-                        ansViewHolder.btnHold.setText("On Hold");
+                        ansViewHolder.ansConfirm.setText("Ans: On Hold");
+                        ansViewHolder.ansConfirm.setVisibility(View.VISIBLE);
+                        ansViewHolder.btnHold.setVisibility(View.GONE);
+                        ansViewHolder.ans1.setVisibility(View.VISIBLE);
+                        ansViewHolder.ans2.setVisibility(View.VISIBLE);
+                        ansViewHolder.ans3.setVisibility(View.VISIBLE);
+                        ansViewHolder.ans4.setVisibility(View.VISIBLE);
+                        ansViewHolder.btnConfirm.setVisibility(View.GONE);
+                        ansViewHolder.btnRe.setVisibility(View.GONE);
                     }
                 });
                 ansViewHolder.btnRe.setOnClickListener(new View.OnClickListener() {
@@ -546,8 +561,10 @@ public class Add_answers extends Fragment {
                         ansViewHolder.ans1.setVisibility(View.VISIBLE);
                         ansViewHolder.ans2.setVisibility(View.VISIBLE);
                         ansViewHolder.ans3.setVisibility(View.VISIBLE);
-                        ansViewHolder.ans4.setVisibility(View.VISIBLE
-                        );
+                        ansViewHolder.ans4.setVisibility(View.VISIBLE);
+                        ansViewHolder.btnHold.setVisibility(View.VISIBLE);
+                        ansViewHolder.btnRe.setVisibility(View.GONE);
+
                     }
                 });
 

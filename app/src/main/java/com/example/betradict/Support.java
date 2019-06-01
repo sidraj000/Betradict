@@ -52,6 +52,7 @@ public class Support extends Fragment {
     EditText etMsg;
     ImageView ivSend;
     Button btnSell,btnReq;
+    DatabaseReference mDatabase;
 
     public Support() {
         // Required empty public constructor
@@ -70,8 +71,8 @@ public class Support extends Fragment {
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(mManager);
         etMsg=view.findViewById(R.id.etMsg);
-        btnReq=view.findViewById(R.id.btnReq);
-        btnSell=view.findViewById(R.id.btnSell);
+       btnReq=view.findViewById(R.id.btnReq);
+        //btnSell=view.findViewById(R.id.btnSell);
         ivSend=view.findViewById(R.id.ivSend);
         ivSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +89,17 @@ public class Support extends Fragment {
                     updatenewmsg(uId);
                 }
 
+            }
+        });
+        btnReq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                Date currentDate = cal.getTime();
+                Msgs msgs=new Msgs("Oops, out of Trollers?\n" +
+                        "Don't worry, you don't need to stop playing for that. Just enter the amount you need",1,currentDate);
+                String key=mRef.push().getKey();
+                mRef.child(key).setValue(msgs);
             }
         });
 

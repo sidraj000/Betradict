@@ -16,4 +16,11 @@
         android:padding="5dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/match_card" />
+  <ImageView
+        android:id="@+id/ivanime2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:src="@mipmap/vinciis"/>
 </FrameLayout>

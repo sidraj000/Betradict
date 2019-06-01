@@ -89,7 +89,7 @@ public class trans_prevmatchList extends AppCompatActivity implements Navigation
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        if(id==R.id.suppA)
+      /*  if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -112,7 +112,7 @@ public class trans_prevmatchList extends AppCompatActivity implements Navigation
             finish();
         }
 
-
+*/
 
         return false;
     }

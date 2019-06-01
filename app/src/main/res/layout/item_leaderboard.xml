@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="#a7e2c4"
+        android:background="#CFD8DC"
         >
         <ImageView
             android:id="@+id/ivPic"
@@ -29,7 +29,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:textSize="10dp"
-            android:textColor="#591451"
+            android:textColor="@color/colorPrimaryDark"
             android:fontFamily="@font/aldrich"
 
             />
@@ -41,7 +41,7 @@
             android:layout_marginLeft="50dp"
             android:textSize="10dp"
             android:layout_marginTop="5dp"
-            android:textColor="#591451"
+            android:textColor="@color/colorPrimaryDark"
             android:fontFamily="@font/aldrich"/>
 
 

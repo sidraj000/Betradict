@@ -5,7 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.betradict.Class.AllQuest;
 import com.example.betradict.Class.Match;
@@ -32,6 +35,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +59,8 @@ public class login_act extends AppCompatActivity  {
     public per_det det=null;
     public ChildEventListener mChildEventListener;
     FirebaseUser currentUser;
+    public User u=null;
+    TextView tnc;
 
 
     @Override
@@ -76,6 +82,8 @@ public class login_act extends AppCompatActivity  {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        tnc=findViewById(R.id.tnc);
+        tnc.setMovementMethod(LinkMovementMethod.getInstance());
     }
     @Override
     public void onStart() {
@@ -84,7 +92,10 @@ public class login_act extends AppCompatActivity  {
         currentUser = mAuth.getCurrentUser();
         if(currentUser!=null)
         {
-            startActivity(new Intent(login_act.this, trans_activity.class));
+
+                startActivity(new Intent(login_act.this, trans_activity.class));
+
+
         }
         else
         {
@@ -285,23 +296,7 @@ public class login_act extends AppCompatActivity  {
 
 
     private void updateUI(final FirebaseUser user) {
-        /*
-        DatabaseReference mData=FirebaseDatabase.getInstance().getReference().child("users").child(uId);
-        mData.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                 det=dataSnapshot.getValue(per_det.class);
-                Toast.makeText(login_act.this, user.getDisplayName(), Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
         int a=0;
         for(int p=0;p<mUser.size();p++)
         {
@@ -370,7 +365,7 @@ public class login_act extends AppCompatActivity  {
         Calendar cal = Calendar.getInstance();
         Date currentDate = cal.getTime();
         li.add(new transactions(0,"u","u",currentDate, "u"));
-        Wallet wall=new Wallet(250,li);
+        Wallet wall=new Wallet(1000,li);
         User usr = new User(details,wall);
         mDatabase.child("users").child(userId).setValue(usr);
 

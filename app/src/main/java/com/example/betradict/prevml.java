@@ -231,7 +231,7 @@ public class prevml extends Fragment {
                     public void onClick(View v) {
                         Intent intent=new Intent(getContext(), transfrag5.class);
                         Bundle b=null;
-                        String data=mCMatch.get(k).id;
+                        String data[]={mCMatch.get(k).id,"normal"};
                       intent.putExtra("det",data);
                         startActivity(intent);
 

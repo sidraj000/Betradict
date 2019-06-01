@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/name"
+        android:title="Hello!"
+        >
+    </item>
     <item android:id="@+id/home"
         android:title="Home"
         android:fontFamily="@font/aldrich">
@@ -25,7 +30,7 @@
     <item android:id="@+id/logout"
         android:title="LogOut"
         android:fontFamily="@font/aldrich"></item>
-    <item
+    <!--<item
           android:id="@+id/write_quest"
           android:title="Add Quest"
           android:fontFamily="@font/aldrich"></item>
@@ -43,5 +48,10 @@
           android:title="Support Admin"
           android:fontFamily="@font/aldrich">
       </item>
+    <item
+        android:id="@+id/stopmatch"
+        android:title="Stop Match"
+        android:fontFamily="@font/aldrich">
+    </item>-->
 
 </menu>

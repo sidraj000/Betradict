@@ -17,9 +17,6 @@ import com.example.betradict.Class.Wallet;
 import com.example.betradict.Converter;
 import com.example.betradict.LeaderBoard;
 import com.example.betradict.R;
-import com.example.betradict.addDynamic;
-import com.example.betradict.admin.addEvent;
-import com.example.betradict.admin.addQuest;
 import com.example.betradict.login_act;
 import com.example.betradict.trans_prevmatchList;
 import com.example.betradict.wallet_trans;
@@ -108,7 +105,7 @@ public class trans_leader extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        if(id==R.id.suppA)
+  /*      if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -130,7 +127,7 @@ public class trans_leader extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, addDynamic.class));
             finish();
         }
-
+*/
 
 
         return false;

@@ -38,14 +38,13 @@ import static android.support.constraint.Constraints.TAG;
  * A simple {@link Fragment} subclass.
  */
 public class frag5 extends Fragment {
-    String det;
+    String det[];
     private RecyclerView mRecycler;
     private AnsweredAdapter mAdapter;
     private LinearLayoutManager mManager;
     private DatabaseReference mFriendsReference;
     FirebaseUser muser;
     public Bundle b;
-    public String arr[];
     final String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     public Quest_wall quest_wall = null;
     public Usrwal u;
@@ -62,12 +61,12 @@ public class frag5 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Bundle b = getArguments();
-        det = b.getString("det");
+        det = b.getStringArray("det");
         View view = inflater.inflate(R.layout.fragment_frag5, container, false);
         mRecycler = view.findViewById(R.id.questAnsPList);
         muser = FirebaseAuth.getInstance().getCurrentUser();
         mFriendsReference = FirebaseDatabase.getInstance().getReference()
-                .child("quest_usr").child(muser.getUid()).child("cricket").child(det).child("normal");
+                .child("quest_usr").child(muser.getUid()).child("cricket").child(det[0]).child(det[1]);
         mManager = new LinearLayoutManager(getContext());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);

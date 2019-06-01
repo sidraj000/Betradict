@@ -13,8 +13,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.betradict.Class.Wallet;
+import com.example.betradict.admin.addEvent;
+import com.example.betradict.admin.addQuest;
 import com.example.betradict.transition_act.transSupport;
 import com.example.betradict.transition_act.trans_activity;
+import com.example.betradict.transition_act.trans_adminMList;
 import com.example.betradict.transition_act.trans_leader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -101,9 +104,9 @@ public class wallet_trans extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        /*   if(id==R.id.suppA)
+       /* if(id==R.id.suppA)
         {
-            startActivity(new Intent(this,trans_adminMList.class));
+            startActivity(new Intent(this, trans_adminMList.class));
             finish();
         }
 
@@ -114,7 +117,7 @@ public class wallet_trans extends AppCompatActivity implements NavigationView.On
         }
       if(id==R.id.addEvent)
         {
-            startActivity(new Intent(this,addEvent.class));
+            startActivity(new Intent(this, addEvent.class));
             finish();
         }
 

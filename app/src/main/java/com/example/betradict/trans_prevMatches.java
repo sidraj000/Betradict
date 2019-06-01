@@ -197,7 +197,7 @@ public class trans_prevMatches extends AppCompatActivity implements NavigationVi
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        if(id==R.id.suppA)
+      /*  if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -219,7 +219,7 @@ public class trans_prevMatches extends AppCompatActivity implements NavigationVi
             startActivity(new Intent(this, addDynamic.class));
             finish();
         }
-
+*/
 
         return false;
     }

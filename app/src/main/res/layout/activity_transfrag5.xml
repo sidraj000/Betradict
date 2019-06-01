@@ -6,5 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".transition_act.transfrag5"
     android:id="@+id/transfrag5">
+    <ImageView
+        android:id="@+id/btnTogg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/in" />
 
 </RelativeLayout>

@@ -16,9 +16,6 @@ import android.view.MenuItem;
 import com.example.betradict.Class.Wallet;
 import com.example.betradict.Converter;
 import com.example.betradict.R;
-import com.example.betradict.addDynamic;
-import com.example.betradict.admin.addEvent;
-import com.example.betradict.admin.addQuest;
 import com.example.betradict.cricketMList;
 import com.example.betradict.login_act;
 import com.example.betradict.trans_prevmatchList;
@@ -154,7 +151,7 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-    if(id==R.id.suppA)
+  /*if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -176,8 +173,12 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
           startActivity(new Intent(this, addDynamic.class));
           finish();
       }
-
-
+      if(id==R.id.stopmatch)
+      {
+          startActivity(new Intent(this, adminml.class));
+          finish();
+      }
+*/
 
         return false;
     }

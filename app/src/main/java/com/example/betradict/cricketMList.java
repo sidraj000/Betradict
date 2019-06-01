@@ -20,6 +20,8 @@ import android.view.KeyboardShortcutGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,9 @@ public class cricketMList extends Fragment {
     private LinearLayoutManager mManager;
     private DatabaseReference mFriendsReference;
     FirebaseUser muser;
+    Animation animation;
+    ImageView ivAnime;
+
 
     final String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -79,13 +84,14 @@ public class cricketMList extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cricketmlist, container, false);
         mRecycler = view.findViewById(R.id.matchList);
         muser = FirebaseAuth.getInstance().getCurrentUser();
-        mFriendsReference = FirebaseDatabase.getInstance().getReference()
-                .child("match").child("cricket");
+        mFriendsReference = FirebaseDatabase.getInstance().getReference().child("match").child("cricket");
         mManager = new LinearLayoutManager(getContext());
-        mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
+        //mManager.setReverseLayout(true);
+        //mManager.setStackFromEnd(true);
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(mManager);
+       // ivAnime=view.findViewById(R.id.ivanime2);
+        animation= AnimationUtils.loadAnimation(getContext(),R.anim.rotate);
 
         return view;
 
@@ -128,8 +134,11 @@ public class cricketMList extends Fragment {
     private class cListAdapter extends RecyclerView.Adapter<cViewHolder> {
         private Context mContext;
         private DatabaseReference mRef;
+
         public List<Match> mCMatch=new ArrayList<>();
         public List<String> cId=new ArrayList<>();
+
+
         public cListAdapter(Context context, DatabaseReference ref) {
             mContext = context;
             mRef = ref;
@@ -159,7 +168,22 @@ public class cricketMList extends Fragment {
                           notifyItemRemoved(index);
                         }
 
+
                     }
+                    if(cMatch.status==0) {
+                        String key = dataSnapshot.getKey();
+                        Integer index = cId.indexOf(key);
+                        if(index>-1){
+                            mCMatch.set(index,cMatch);
+                        }
+                        else {
+                            mCMatch.add(cMatch);
+                            cId.add(key);
+                        }
+
+
+                    }
+
                 }
 
                 @Override
@@ -189,7 +213,6 @@ public class cricketMList extends Fragment {
         @Override
         public cViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View view = null;
-
             LayoutInflater inflater = LayoutInflater.from(mContext);
             view = inflater.inflate(R.layout.match_card, viewGroup, false);
 
@@ -198,7 +221,9 @@ public class cricketMList extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull final cViewHolder cViewHolder, int i) {
+
             if(mCMatch.get(i).status==0) {
+                final int k = i;
                 cViewHolder.tvTeamA.setText(mCMatch.get(i).teamA);
                 cViewHolder.tvTeamB.setText(mCMatch.get(i).teamB);
                 DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -209,7 +234,7 @@ public class cricketMList extends Fragment {
                 storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamA + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        new DownLoadImageTask(cViewHolder.ivTeamA).execute(uri.toString());
+                      new DownLoadImageTask(cViewHolder.ivTeamA).execute(uri.toString());
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -223,6 +248,7 @@ public class cricketMList extends Fragment {
                     public void onSuccess(Uri uri) {
                         new DownLoadImageTask(cViewHolder.ivTeamB).execute(uri.toString());
 
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -230,7 +256,7 @@ public class cricketMList extends Fragment {
                         // Handle any errors
                     }
                 });
-                final int k = i;
+
 
                 Calendar cal = Calendar.getInstance();
                 final Date currentDate = cal.getTime();
@@ -245,11 +271,16 @@ public class cricketMList extends Fragment {
                         long hours = minutes / 60;
                         long days = hours / 24;
                         String time;
-                        if(days>0)
+                        if(days>1)
                         {
-                          time=days + " " + "days" + " :" + hours % 24;
+                          time=days + " " + "days" + " :" + hours % 24+" hrs";
                         }
-                        else {
+                       else if(days==1)
+                        {
+
+                            time=days + " " + "day" + " :" + hours % 24+" hrs";
+                        }
+                       else  {
                              time = hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
                         }
                         cViewHolder.tvCounter.setText(time);
@@ -267,6 +298,9 @@ public class cricketMList extends Fragment {
                             String arr[] = {"cricket", mCMatch.get(k).id,"normal"};
                             intent.putExtra("details", arr);
                             startActivity(intent);
+                            //mCMatch.clear();
+                         //   cId.clear();
+
 
                     }
                 });
@@ -283,7 +317,7 @@ public class cricketMList extends Fragment {
     }
 
 
-    private static class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
+    private  class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
         ImageView imageView;
 
         public DownLoadImageTask(ImageView imageView){
@@ -301,6 +335,7 @@ public class cricketMList extends Fragment {
                         Decode an input stream into a bitmap.
                  */
                 logo = BitmapFactory.decodeStream(is);
+
             }
             catch(IOException e)
             {
@@ -310,7 +345,9 @@ public class cricketMList extends Fragment {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+
             imageView.setImageBitmap(bitmap);
+
         }
     }
 

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="#a7e2c4">
+        android:background="#CFD8DC">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/aldrich"
                 android:text="TextView"
-                android:textColor="#591451"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView

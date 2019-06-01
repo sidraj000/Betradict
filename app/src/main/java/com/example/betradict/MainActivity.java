@@ -128,6 +128,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         two=findViewById(R.id.two);
         three=findViewById(R.id.three);
        // five=findViewById(R.id.five);
+        one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(0);
+            }
+        });
+        two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(1);
+
+            }
+        });
+        three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(2);
+            }
+        });
         viewPager=findViewById(R.id.container);
         pagerViewAdapter=new PagerViewAdapter(getSupportFragmentManager(),arr);
         viewPager.setAdapter(pagerViewAdapter);
@@ -256,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        if(id==R.id.suppA)
+    /*    if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -279,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-
+*/
         return false;
     }
 }

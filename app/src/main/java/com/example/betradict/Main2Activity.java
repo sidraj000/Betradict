@@ -168,7 +168,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-        if(id==R.id.suppA)
+     /*   if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -191,7 +191,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             finish();
         }
 
-
+*/
         return false;
     }
 }
