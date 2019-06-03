@@ -17,9 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.betradict.Class.Wallet;
+import com.example.betradict.admin.addDynamic;
 import com.example.betradict.admin.addEvent;
 import com.example.betradict.admin.addQuest;
 import com.example.betradict.transition_act.transSupport;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     PagerViewAdapter pagerViewAdapter;
     public Bundle arr;
     String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+TextView tvU;
 
 
     @Override
@@ -66,7 +68,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawer.addDrawerListener(mToggle);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-       arr =getIntent().getExtras();
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        navigationView.setItemIconTintList(null);
+        arr =getIntent().getExtras();
         final String[] data=arr.getStringArray("details");
         if(data[2].equals("normal"))
         {
@@ -180,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
-                menuItem.setIcon(Converter.convertLayoutToImage(MainActivity.this,(int)wallet.balance,R.mipmap.trollar));
+                menuItem.setIcon(Converter.convertLayoutToImage(MainActivity.this,(int)wallet.balance,R.drawable.wallet));
 
             }
 
@@ -275,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-    /*    if(id==R.id.suppA)
+       if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -298,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-*/
+
         return false;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/appbg"
+    android:background="@mipmap/bg"
     android:id="@+id/trans_background"
     tools:context=".transition_act.trans_activity">
 <RelativeLayout
@@ -13,8 +13,9 @@
     android:id="@+id/trans">
     </RelativeLayout>
    <android.support.design.widget.NavigationView
+       app:headerLayout="@layout/header"
         android:id="@+id/nav_view4"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/nav_menu"></android.support.design.widget.NavigationView>

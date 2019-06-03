@@ -38,7 +38,7 @@ public class sports_list extends AppCompatActivity implements NavigationView.OnN
         mDrawer.addDrawerListener(mToggle);
         NavigationView navigationView = findViewById(R.id.nav_view3);
         navigationView.setNavigationItemSelectedListener(sports_list.this);
-
+        navigationView.setItemIconTintList(null);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ivCric.setOnClickListener(new View.OnClickListener() {

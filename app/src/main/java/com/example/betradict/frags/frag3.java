@@ -159,7 +159,7 @@ public class frag3 extends Fragment {
 
                     // A new comment has been added, add it to the displayed list
                     Quest qu = dataSnapshot.getValue(Quest.class);
-                    if (!qu.myans.equals("U")) {
+                     if (qu!=null&&!qu.myans.equals("U")) {
 
                         // [START_EXCLUDE]
                         // Update RecyclerView
@@ -178,7 +178,7 @@ public class frag3 extends Fragment {
                     // comment and if so displayed the changed comment.
                     Quest quest = dataSnapshot.getValue(Quest.class);
                     String userKey = dataSnapshot.getKey();
-                    if (!quest.myans.equals("U")) {
+                    if (quest!=null&&!quest.myans.equals("U")) {
 
                         // [START_EXCLUDE]
                         int userIndex = mQuestIds.indexOf(userKey);
@@ -204,7 +204,7 @@ public class frag3 extends Fragment {
                     // comment and if so remove it.
                     String userKey = dataSnapshot.getKey();
                     Quest quest = dataSnapshot.getValue(Quest.class);
-                    if (!quest.myans.equals("U")) {
+                    if (quest!=null&&!quest.myans.equals("U")) {
 
                         // [START_EXCLUDE]
                         int userIndex = mQuestIds.indexOf(userKey);

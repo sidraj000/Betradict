@@ -101,7 +101,7 @@ public class adminMList extends Fragment {
         public cListAdapter(Context context, DatabaseReference ref) {
             mContext = context;
             mRef = ref;
-            Query query=mRef.orderByChild("date");
+            Query query=mRef.orderByChild("date/time");
             //mRef=FirebaseDatabase.getInstance().getReference().child("match").child("cricket");
             query.addChildEventListener(new ChildEventListener() {
                 @Override
@@ -121,12 +121,7 @@ public class adminMList extends Fragment {
                     String key = dataSnapshot.getKey();
                     int index=cId.indexOf(key);
 
-                        if(index<-1) {
 
-                            mCMatch.add(cMatch);
-                            cId.add(key);
-                            notifyItemInserted(mCMatch.size() - 1);
-                        }
 
                         if(index>-1) {
                            mCMatch.set(index,cMatch);
@@ -170,22 +165,38 @@ public class adminMList extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final cViewHolder cViewHolder, int i) {
 
-            if(mCMatch.get(i).status==0) {
+            if (mCMatch.get(i).status == 0) {
+                final int k = i;
+                cViewHolder.tvTeamA.setText(mCMatch.get(i).teamA);
+                cViewHolder.tvTeamB.setText(mCMatch.get(i).teamB);
+                cViewHolder.btn.setText("Stop");
+                cViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference md = FirebaseDatabase.getInstance().getReference();
+                        md.child("match").child("cricket").child(mCMatch.get(k).id).child("status").setValue(1);
+                        Toast.makeText(mContext, "Match Stopped", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            } else {
+                cViewHolder.btn.setText("Start");
+
                 final int k = i;
                 cViewHolder.tvTeamA.setText(mCMatch.get(i).teamA);
                 cViewHolder.tvTeamB.setText(mCMatch.get(i).teamB);
                 cViewHolder.btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DatabaseReference md=FirebaseDatabase.getInstance().getReference();
-                        md.child("match").child("cricket").child(mCMatch.get(k).id).child("status").setValue(1);
-                        Toast.makeText(mContext, "Match Stopped", Toast.LENGTH_SHORT).show();
+                        DatabaseReference md = FirebaseDatabase.getInstance().getReference();
+                        md.child("match").child("cricket").child(mCMatch.get(k).id).child("status").setValue(0);
+                        Toast.makeText(mContext, "Match Started", Toast.LENGTH_SHORT).show();
                     }
+
                 });
 
+
             }
-
-
         }
 
 

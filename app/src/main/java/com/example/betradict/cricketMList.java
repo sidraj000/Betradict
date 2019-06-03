@@ -38,9 +38,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -231,7 +233,57 @@ public class cricketMList extends Fragment {
                 String formattedDateString = formatter.format(date);
                 cViewHolder.tvDate.setText(formattedDateString);
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-                storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamA + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                final File file = new File(mContext.getFilesDir(),mCMatch.get(i).teamA +".png");
+                if(file.exists())
+                {
+                    cViewHolder.ivTeamA.setImageBitmap(BitmapFactory.decodeFile(file.getPath()));
+                 //
+                    //   Toast.makeText(mContext, "exists", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+
+                        storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamA + ".png").getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                cViewHolder.ivTeamA.setImageBitmap(BitmapFactory.decodeFile(file.getPath()));
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+
+
+                }
+                final File file2= new File(mContext.getFilesDir(),mCMatch.get(i).teamB +".png");
+                if(file2.exists())
+                {
+                    cViewHolder.ivTeamB.setImageBitmap(BitmapFactory.decodeFile(file2.getPath()));
+                   // Toast.makeText(mContext, "exists", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+
+                    storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamB + ".png").getFile(file2).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            cViewHolder.ivTeamB.setImageBitmap(BitmapFactory.decodeFile(file2.getPath()));
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+
+
+                }
+
+             /*   storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamA + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                       new DownLoadImageTask(cViewHolder.ivTeamA).execute(uri.toString());
@@ -255,7 +307,7 @@ public class cricketMList extends Fragment {
                     public void onFailure(@NonNull Exception exception) {
                         // Handle any errors
                     }
-                });
+                });*/
 
 
                 Calendar cal = Calendar.getInstance();

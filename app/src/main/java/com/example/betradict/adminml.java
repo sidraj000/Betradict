@@ -13,6 +13,5 @@ public class adminml extends AppCompatActivity {
         FragmentManager fm=getSupportFragmentManager();
         adminMList fragment=new adminMList();
         fm.beginTransaction().replace(R.id.transadminml,fragment).commit();
-
     }
 }

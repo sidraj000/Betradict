@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.betradict.Class.Wallet;
 import com.example.betradict.admin.addEvent;
@@ -37,6 +39,7 @@ public class trans_prevMatches extends AppCompatActivity implements NavigationVi
     PagerViewAdapter pagerViewAdapter;
     public Bundle arr;
     String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+    TextView tvU;
 
 
     @Override
@@ -57,7 +60,10 @@ public class trans_prevMatches extends AppCompatActivity implements NavigationVi
         navigationView.setNavigationItemSelectedListener(this);
         arr =getIntent().getExtras();
         String[] data=arr.getStringArray("details");
-
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        navigationView.setItemIconTintList(null);
 
 
         mToggle.syncState();
@@ -102,7 +108,7 @@ public class trans_prevMatches extends AppCompatActivity implements NavigationVi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
-                menuItem.setIcon(Converter.convertLayoutToImage(trans_prevMatches.this,(int)wallet.balance,R.mipmap.trollar));
+                menuItem.setIcon(Converter.convertLayoutToImage(trans_prevMatches.this,(int)wallet.balance,R.drawable.wallet));
 
             }
 

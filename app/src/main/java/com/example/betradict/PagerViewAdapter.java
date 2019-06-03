@@ -38,7 +38,7 @@ class PagerViewAdapter extends FragmentPagerAdapter{
                 fragment=new frag2();
                 fragment.setArguments(bd);
                 break;
- /*       case 3:
+       case 3:
                 fragment=new update_wallet();
                 fragment.setArguments(bd);
                 break;
@@ -46,13 +46,13 @@ class PagerViewAdapter extends FragmentPagerAdapter{
                 fragment=new Add_answers();
                 fragment.setArguments(bd);
                 break;
-*/
+
         }
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 5;
     }
 }

@@ -41,6 +41,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     Wallet wall;
     Integer wallet_amount=250;
     int backButtonCount=0;
+    TextView tvU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,10 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         mDrawer.addDrawerListener(mToggle);
         NavigationView navigationView = findViewById(R.id.nav_view2);
         navigationView.setNavigationItemSelectedListener(Main2Activity.this);
-
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        navigationView.setItemIconTintList(null);
         mToggle.syncState();
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -104,7 +108,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
-                menuItem.setIcon(Converter.convertLayoutToImage(Main2Activity.this,(int)wallet.balance,R.mipmap.appl));
+                menuItem.setIcon(Converter.convertLayoutToImage(Main2Activity.this,(int)wallet.balance,R.drawable.wallet));
 
             }
 

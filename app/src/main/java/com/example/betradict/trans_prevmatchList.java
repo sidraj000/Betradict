@@ -9,6 +9,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.betradict.admin.addEvent;
 import com.example.betradict.admin.addQuest;
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class trans_prevmatchList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
+    TextView tvU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,10 @@ public class trans_prevmatchList extends AppCompatActivity implements Navigation
         NavigationView navigationView = findViewById(R.id.nav_viewtml);
         navigationView.setNavigationItemSelectedListener(trans_prevmatchList.this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        navigationView.setItemIconTintList(null);
         mToggle.syncState();
 
 

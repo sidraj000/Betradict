@@ -246,6 +246,10 @@ public class update_wallet extends Fragment {
             final List<String> mNkey = new ArrayList<>();
             if(mAllQuest.get(i).quest_wall.wStatus==1)
             {
+                friendViewHolder.tvquest.setText(mAllQuest.get(i).ques);
+                friendViewHolder.tvBids1.setText(Float.toString(mAllQuest.get(i).quest_wall.bids1));
+                friendViewHolder.tvBids2.setText(Float.toString(mAllQuest.get(i).quest_wall.bids2));
+                friendViewHolder.tvBids3.setText(Float.toString(mAllQuest.get(i).quest_wall.bids3));
                 friendViewHolder.btnWallet.setVisibility(View.GONE);
                 friendViewHolder.tvProfit.setText(Float.toString(mAllQuest.get(i).quest_wall.profit));
             }

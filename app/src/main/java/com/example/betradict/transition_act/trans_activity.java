@@ -12,10 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.betradict.Class.Wallet;
 import com.example.betradict.Converter;
 import com.example.betradict.R;
+import com.example.betradict.admin.addDynamic;
+import com.example.betradict.admin.addEvent;
+import com.example.betradict.admin.addQuest;
+import com.example.betradict.adminml;
 import com.example.betradict.cricketMList;
 import com.example.betradict.login_act;
 import com.example.betradict.trans_prevmatchList;
@@ -32,6 +38,7 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
     String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+    TextView tvU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,10 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
         mToggle = new ActionBarDrawerToggle(trans_activity.this, mDrawer, R.string.open, R.string.close);
         mDrawer.addDrawerListener(mToggle);
         NavigationView navigationView = findViewById(R.id.nav_view4);
+        navigationView.setItemIconTintList(null);
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         navigationView.setNavigationItemSelectedListener(trans_activity.this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -62,7 +73,7 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
-                menuItem.setIcon(Converter.convertLayoutToImage(trans_activity.this,(int)wallet.balance,R.mipmap.appl));
+                menuItem.setIcon(Converter.convertLayoutToImage(trans_activity.this,(int)wallet.balance,R.drawable.wallet));
 
             }
 
@@ -151,7 +162,7 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-  /*if(id==R.id.suppA)
+  if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -178,7 +189,7 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
           startActivity(new Intent(this, adminml.class));
           finish();
       }
-*/
+
 
         return false;
     }

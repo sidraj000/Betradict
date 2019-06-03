@@ -9,6 +9,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.betradict.R;
 import com.example.betradict.Support;
@@ -21,6 +23,7 @@ public class transSupport extends AppCompatActivity  implements NavigationView.O
 
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
+    TextView tvU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +35,12 @@ public class transSupport extends AppCompatActivity  implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_viewts);
         navigationView.setNavigationItemSelectedListener(transSupport.this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        navigationView.setItemIconTintList(null);
         mToggle.syncState();
 
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
 
 

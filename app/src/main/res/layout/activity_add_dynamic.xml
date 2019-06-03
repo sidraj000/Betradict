@@ -154,9 +154,50 @@
         android:ems="10"
         android:hint="Opt3"
         android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/q4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:ems="10"
+            android:hint="Quest"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/q4opt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="150dp"
+            android:ems="10"
+            android:hint="Opt1"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/q4opt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="150dp"
+            android:ems="10"
+            android:hint="Opt2"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/q4opt3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="150dp"
+            android:ems="10"
+            android:hint="Opt3"
+            android:inputType="textPersonName" />
 
 
-    <Button
+
+        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

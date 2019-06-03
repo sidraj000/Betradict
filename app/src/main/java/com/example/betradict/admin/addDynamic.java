@@ -26,7 +26,7 @@ import java.util.List;
 import static android.support.constraint.Constraints.TAG;
 
 public class addDynamic extends AppCompatActivity {
-   EditText tvDOver,tvDGid,tvDinn,q1opt1,q1opt2,q1opt3,q2opt1,q2opt2,q2opt3,q3opt1,q3opt2,q3opt3;
+   EditText tvDOver,tvDGid,tvDinn,q1opt1,q1opt2,q1opt3,q2opt1,q2opt2,q2opt3,q3opt1,q3opt2,q3opt3,q4,q4opt1,q4opt2,q4opt3;
    TextView tvQ1,tvQ2,tvQ3;
    Button btnD;
     public DatabaseReference mRef;
@@ -52,6 +52,10 @@ public class addDynamic extends AppCompatActivity {
         q3opt1=findViewById(R.id.q3opt1);
         q3opt2=findViewById(R.id.q3opt2);
         q3opt3=findViewById(R.id.q3opt3);
+        q4=findViewById(R.id.q4);
+        q4opt1=findViewById(R.id.q4opt1);
+        q4opt2=findViewById(R.id.q4opt2);
+        q4opt3=findViewById(R.id.q4opt3);
         tvQ1=findViewById(R.id.q1);
         tvQ2=findViewById(R.id.q2);
         tvQ3=findViewById(R.id.q3);
@@ -143,30 +147,52 @@ public class addDynamic extends AppCompatActivity {
         btnD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Quest quest1 = new Quest("How much runs would be made in over "+tvDOver.getText().toString()+"of inning "+tvDinn.getText().toString(), q1opt1.getText().toString(),  q1opt2.getText().toString(), q1opt3.getText().toString(),"q1"+tvDOver.getText().toString(), 0, 0,0, "U", "U");
-                Quest quest2 = new Quest("How much sixes would be hit in over "+tvDOver.getText().toString()+"of inning "+tvDinn.getText().toString(), q2opt1.getText().toString(), q2opt2.getText().toString(), q2opt3.getText().toString(),"q2"+tvDOver.getText().toString(), 0, 0,0, "U", "U");
-                Quest quest3 = new Quest("How much wickets would be taken in over "+tvDOver.getText().toString()+"of inning "+tvDinn.getText().toString(), q3opt1.getText().toString(), q2opt2.getText().toString(), q3opt3.getText().toString(),"q3"+tvDOver.getText().toString(), 0, 0,0, "U", "U");
+                if(!q4.getText().toString().isEmpty())
+                {
+                    DatabaseReference mDRef = FirebaseDatabase.getInstance().getReference();
 
-                AllQuest allQuest1 = new AllQuest("How much runs would be made in over "+tvDOver.getText().toString()+"of inning "+tvDinn.getText().toString(), q1opt1.getText().toString(),  q1opt2.getText().toString(), q1opt3.getText().toString(),"q1"+tvDOver.getText().toString(), new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
-                AllQuest allQuest2 = new AllQuest("How much sixes would be hit in over "+tvDOver.getText().toString()+"of inning "+tvDinn.getText().toString(), q2opt1.getText().toString(), q2opt2.getText().toString(), q2opt3.getText().toString(),"q2"+tvDOver.getText().toString(), new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
-                AllQuest allQuest3 = new AllQuest("How much wickets would be taken in over "+tvDOver.getText().toString()+"of inning "+tvDinn.getText().toString(), q3opt1.getText().toString(), q2opt2.getText().toString(), q3opt3.getText().toString(),"q3"+tvDOver.getText().toString(), new Quest_wall(0,0,0,150,150,150,50,50, 50, "U", 0,0));
+                   // String key= mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").push().getKey();
+                    String key2= mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").push().getKey();
 
-
-                DatabaseReference mDRef=FirebaseDatabase.getInstance().getReference();
-
-                for (int i = 0; i < mUserIds.size(); i++) {
-                    mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child("q1"+tvDOver.getText().toString()).setValue(quest1);
-                    mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child("q2"+tvDOver.getText().toString()).setValue(quest2);
-                    mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child("q3"+tvDOver.getText().toString()).setValue(quest3);
+                    AllQuest allQuest = new AllQuest(q4.getText().toString() +" " + tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q4opt1.getText().toString(), q4opt2.getText().toString(), q4opt3.getText().toString(), key2, new Quest_wall(0, 0, 0, 150, 150, 150, 50, 50, 50, "U", 0, 0));
 
 
+                    for (int i = 0; i < mUserIds.size(); i++) {
+                       String key= mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").push().getKey();
+                        Quest quest = new Quest(q4.getText().toString() +" "+ tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q4opt1.getText().toString(), q4opt2.getText().toString(), q4opt3.getText().toString(), key, 0, 0, 0, "U", "U");
+                        mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child(key).setValue(quest);
+
+
+                    }
+                    mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child(key2).setValue(allQuest);
+                    Toast.makeText(addDynamic.this, "Extra Question Added Successfully", Toast.LENGTH_SHORT).show();
                 }
-                mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child("q1"+tvDOver.getText().toString()).setValue(allQuest1);
-                mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child("q2"+tvDOver.getText().toString()).setValue(allQuest2);
-                mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child("q3"+tvDOver.getText().toString()).setValue(allQuest3);
+                else {
+                    Quest quest1 = new Quest("How much runs would be made in over " + " " +tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q1opt1.getText().toString(), q1opt2.getText().toString(), q1opt3.getText().toString(), "q1" + tvDOver.getText().toString()+tvDinn.getText().toString(), 0, 0, 0, "U", "U");
+                    Quest quest2 = new Quest("How much sixes would be hit in over " + " " +tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q2opt1.getText().toString(), q2opt2.getText().toString(), q2opt3.getText().toString(), "q2" + tvDOver.getText().toString()+tvDinn.getText().toString(), 0, 0, 0, "U", "U");
+                    Quest quest3 = new Quest("How much wickets would be taken in over " +" " + tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q3opt1.getText().toString(), q2opt2.getText().toString(), q3opt3.getText().toString(), "q3" + tvDOver.getText().toString()+tvDinn.getText().toString(), 0, 0, 0, "U", "U");
+
+                    AllQuest allQuest1 = new AllQuest("How much runs would be made in over " +" " + tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q1opt1.getText().toString(), q1opt2.getText().toString(), q1opt3.getText().toString(), "q1" + tvDOver.getText().toString()+tvDinn.getText().toString(), new Quest_wall(0, 0, 0, 150, 150, 150, 50, 50, 50, "U", 0, 0));
+                    AllQuest allQuest2 = new AllQuest("How much sixes would be hit in over " + " " +tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q2opt1.getText().toString(), q2opt2.getText().toString(), q2opt3.getText().toString(), "q2" + tvDOver.getText().toString()+tvDinn.getText().toString(), new Quest_wall(0, 0, 0, 150, 150, 150, 50, 50, 50, "U", 0, 0));
+                    AllQuest allQuest3 = new AllQuest("How much wickets would be taken in over " + " " +tvDOver.getText().toString() + "of " + tvDinn.getText().toString()+" inning", q3opt1.getText().toString(), q2opt2.getText().toString(), q3opt3.getText().toString(), "q3" + tvDOver.getText().toString()+tvDinn.getText().toString(), new Quest_wall(0, 0, 0, 150, 150, 150, 50, 50, 50, "U", 0, 0));
 
 
-                Toast.makeText(addDynamic.this, "Question Added Successfully", Toast.LENGTH_SHORT).show();
+                    DatabaseReference mDRef = FirebaseDatabase.getInstance().getReference();
+
+                    for (int i = 0; i < mUserIds.size(); i++) {
+                        mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child("q1" + tvDOver.getText().toString()+ tvDinn.getText().toString()).setValue(quest1);
+                        mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child("q2" + tvDOver.getText().toString()+ tvDinn.getText().toString()).setValue(quest2);
+                        mDRef.child("quest_usr").child(mUserIds.get(i)).child("cricket").child(tvDGid.getText().toString()).child("live").child("q3" + tvDOver.getText().toString()+ tvDinn.getText().toString()).setValue(quest3);
+
+
+                    }
+                    mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child("q1" + tvDOver.getText().toString()+ tvDinn.getText().toString()).setValue(allQuest1);
+                    mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child("q2" + tvDOver.getText().toString()+ tvDinn.getText().toString()).setValue(allQuest2);
+                    mDRef.child("quest").child("cricket").child(tvDGid.getText().toString()).child("live").child("q3" + tvDOver.getText().toString()+ tvDinn.getText().toString()).setValue(allQuest3);
+
+
+                    Toast.makeText(addDynamic.this, "Question Added Successfully", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

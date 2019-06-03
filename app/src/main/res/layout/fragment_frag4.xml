@@ -18,10 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
-        android:visibility="visible"
         tools:listitem="@layout/question" />
     <ImageView
         android:id="@+id/ivanime"
@@ -31,4 +31,21 @@
         android:layout_gravity="center"
         android:visibility="gone"
         android:src="@mipmap/appl"/>
+
+    <ImageView
+        android:id="@+id/arrr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/arrr" />
+    <ImageView
+        android:id="@+id/arrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:layout_gravity="bottom|left"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/arrl" />
 </FrameLayout>

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.betradict.Class.Wallet;
@@ -26,12 +27,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class wallet_trans extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView tv;
     String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
     DatabaseReference mRef=FirebaseDatabase.getInstance().getReference();
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
+    TextView tvU;
 
 
 
@@ -46,7 +50,10 @@ public class wallet_trans extends AppCompatActivity implements NavigationView.On
         mDrawer.addDrawerListener(mToggle);
         NavigationView navigationView = findViewById(R.id.nav_view11);
         navigationView.setNavigationItemSelectedListener(wallet_trans.this);
-
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        navigationView.setItemIconTintList(null);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -145,7 +152,7 @@ public class wallet_trans extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
-                menuItem.setIcon(Converter.convertLayoutToImage(wallet_trans.this,(int)wallet.balance,R.mipmap.appl));
+                menuItem.setIcon(Converter.convertLayoutToImage(wallet_trans.this,(int)wallet.balance,R.drawable.wallet));
 
             }
 

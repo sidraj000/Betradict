@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.betradict.Class.Wallet;
 import com.example.betradict.Converter;
@@ -32,7 +33,7 @@ public class trans_leader extends AppCompatActivity implements NavigationView.On
     String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
-
+TextView tvU;
 
 
     @Override
@@ -44,7 +45,10 @@ public class trans_leader extends AppCompatActivity implements NavigationView.On
         mDrawer.addDrawerListener(mToggle);
         NavigationView navigationView = findViewById(R.id.nav_view12);
         navigationView.setNavigationItemSelectedListener(trans_leader.this);
-
+        navigationView.setItemIconTintList(null);
+        View header=navigationView.getHeaderView(0);
+        tvU=header.findViewById(R.id.tvUName);
+        tvU.setText("Hii! "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -142,7 +146,7 @@ public class trans_leader extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
-                menuItem.setIcon(Converter.convertLayoutToImage(trans_leader.this,(int)wallet.balance,R.mipmap.appl));
+                menuItem.setIcon(Converter.convertLayoutToImage(trans_leader.this,(int)wallet.balance,R.drawable.wallet));
 
             }
 

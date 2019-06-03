@@ -1,4 +1,4 @@
-package com.example.betradict;
+package com.example.betradict.Class;
 
 import java.util.Date;
 

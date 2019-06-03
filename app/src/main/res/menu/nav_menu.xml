@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/name"
-        android:title="Hello!"
-        >
-    </item>
+
     <item android:id="@+id/home"
         android:title="Home"
-        android:fontFamily="@font/aldrich">
+        android:fontFamily="@font/aldrich"
+        android:icon="@mipmap/home"
+        >
      </item>
     <item
         android:id="@+id/leader_board"
         android:title="Leader Board"
-        android:fontFamily="@font/aldrich">
+        android:fontFamily="@font/aldrich"
+        android:icon="@mipmap/leaderboard">
     </item>
     <item
         android:id="@+id/wallet"
         android:title="Wallet"
-        android:fontFamily="@font/aldrich"></item>
+        android:fontFamily="@font/aldrich"
+        android:icon="@drawable/wallet"></item>
     <item
         android:id="@+id/prevml"
         android:title="Previous Matches"
-        android:fontFamily="@font/aldrich"></item>
+        android:fontFamily="@font/aldrich"
+        android:icon="@mipmap/previousmatchlist"></item>
     <item
         android:id="@+id/support"
         android:title="Support"
-        android:fontFamily="@font/aldrich"></item>
+        android:fontFamily="@font/aldrich"
+        android:icon="@mipmap/support"></item>
 
     <item android:id="@+id/logout"
         android:title="LogOut"
-        android:fontFamily="@font/aldrich"></item>
-    <!--<item
+        android:fontFamily="@font/aldrich"
+        android:icon="@mipmap/logout"></item>
+    <item
           android:id="@+id/write_quest"
           android:title="Add Quest"
           android:fontFamily="@font/aldrich"></item>
@@ -52,6 +55,6 @@
         android:id="@+id/stopmatch"
         android:title="Stop Match"
         android:fontFamily="@font/aldrich">
-    </item>-->
+    </item>
 
 </menu>
