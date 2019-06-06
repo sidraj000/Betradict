@@ -42,6 +42,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604408055224:android:e08a41acdb1f1dfe",
+        "android_client_info": {
+          "package_name": "com.vincis.betradict"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604408055224-ce6cd71eh5r71kfai2qrpm34fsu5vv61.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vincis.betradict",
+            "certificate_hash": "cd0bf6d91925a006c2347fa3a2e274548c1fbad2"
+          }
+        },
+        {
+          "client_id": "604408055224-aef8an1phh5so09d99ufjg2rcv8jdvi1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcu5cI_q9uSDzNTypYejENf0OXHrZqNH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604408055224-aef8an1phh5so09d99ufjg2rcv8jdvi1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

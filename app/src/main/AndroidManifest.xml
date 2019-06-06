@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.betradict">
+    package="com.vincis.betradict">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,28 +11,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adminml"></activity>
-        <activity android:name=".transition_act.transfrag5" />
-        <activity android:name=".Main3Activity" />
-        <activity android:name=".trans_prevmatchList" />
-        <activity android:name=".trans_prevMatches" />
-        <activity android:name=".transition_act.trans_adminmsgs" />
-        <activity android:name=".transition_act.trans_adminMList" />
-        <activity android:name=".transition_act.transSupport" />
-        <activity android:name=".admin.addQuest" />
-        <activity android:name=".admin.addDynamic" />
-        <activity android:name=".transition_act.trans_leader" />
-        <activity android:name=".wallet_click" />
-        <activity android:name=".transition_act.transUpdateWall" />
-        <activity android:name=".wallet_trans" />
-        <activity android:name=".admin.addEvent" />
-        <activity android:name=".transition_act.trans_activity" />
-        <activity android:name=".sports_list" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".login_act"
+        <activity android:name="com.vincis.betradict.adminml"></activity>
+        <activity android:name="com.vincis.betradict.transition_act.transfrag5" />
+        <activity android:name="com.vincis.betradict.Main3Activity" />
+        <activity android:name="com.vincis.betradict.trans_prevmatchList" />
+        <activity android:name="com.vincis.betradict.trans_prevMatches" />
+        <activity android:name="com.vincis.betradict.transition_act.trans_adminmsgs" />
+        <activity android:name="com.vincis.betradict.transition_act.trans_adminMList" />
+        <activity android:name="com.vincis.betradict.transition_act.transSupport" />
+        <activity android:name="com.vincis.betradict.admin.addQuest" />
+        <activity android:name="com.vincis.betradict.admin.addDynamic" />
+        <activity android:name="com.vincis.betradict.transition_act.trans_leader" />
+        <activity android:name="com.vincis.betradict.wallet_click" />
+        <activity android:name="com.vincis.betradict.transition_act.transUpdateWall" />
+        <activity android:name="com.vincis.betradict.wallet_trans" />
+        <activity android:name="com.vincis.betradict.admin.addEvent" />
+        <activity android:name="com.vincis.betradict.transition_act.trans_activity" />
+        <activity android:name="com.vincis.betradict.sports_list" />
+        <activity android:name="com.vincis.betradict.Main2Activity" />
+        <activity android:name="com.vincis.betradict.login_act"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Home_Page"
+        <activity android:name="com.vincis.betradict.MainActivity" />
+        <activity android:name="com.vincis.betradict.Home_Page"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyMessagingService">
+        <service android:name="com.vincis.betradict.MyMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

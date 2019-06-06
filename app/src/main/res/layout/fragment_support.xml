@@ -30,7 +30,7 @@
            android:layout_marginRight="10dp"
            android:background="#2196F3"
            android:textColor="#ffffff"
-           android:text="Add Trollar"/>
+           android:text="Request Trollar"/>
 
     </LinearLayout>
     <LinearLayout
