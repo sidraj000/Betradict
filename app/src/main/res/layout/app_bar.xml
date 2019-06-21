@@ -12,7 +12,7 @@
         android:id="@+id/toIv"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/trollar"
+        android:src="@drawable/wallet"
         android:clickable="true"
         android:layout_marginLeft="100dp"
         />

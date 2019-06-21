@@ -18,8 +18,13 @@ import android.widget.TextView;
 import com.vincis.betradict.Class.Wallet;
 import com.vincis.betradict.Converter;
 import com.vincis.betradict.R;
+import com.vincis.betradict.admin.addDynamic;
+import com.vincis.betradict.admin.addEvent;
+import com.vincis.betradict.admin.addQuest;
+import com.vincis.betradict.adminml;
 import com.vincis.betradict.cricketMList;
 import com.vincis.betradict.login_act;
+import com.vincis.betradict.operations;
 import com.vincis.betradict.trans_prevmatchList;
 import com.vincis.betradict.wallet_trans;
 import com.google.firebase.auth.FirebaseAuth;
@@ -158,7 +163,7 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
             startActivity(new Intent(this, transSupport.class));
             finish();
         }
-  /*if(id==R.id.suppA)
+ if(id==R.id.suppA)
         {
             startActivity(new Intent(this, trans_adminMList.class));
             finish();
@@ -185,7 +190,12 @@ public class trans_activity extends AppCompatActivity  implements NavigationView
           startActivity(new Intent(this, adminml.class));
           finish();
       }
-*/
+      if(id==R.id.operation)
+      {
+          startActivity(new Intent(this, operations.class));
+          finish();
+      }
+
 
         return false;
     }

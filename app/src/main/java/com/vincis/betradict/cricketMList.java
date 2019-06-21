@@ -21,6 +21,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.ValueEventListener;
+import com.vincis.betradict.Class.AllQuest;
 import com.vincis.betradict.Class.Match;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -110,7 +112,7 @@ public class cricketMList extends Fragment {
     private static class cViewHolder extends RecyclerView.ViewHolder {
 
       ImageView ivTeamA,ivTeamB;
-      TextView tvTeamA,tvTeamB,tvDate;
+      TextView tvTeamA,tvTeamB,tvDate,tvBid;
      TextView tvCounter;
 
         public cViewHolder(View itemView) {
@@ -121,6 +123,7 @@ public class cricketMList extends Fragment {
             tvTeamB=itemView.findViewById(R.id.tvTeam2);
             tvDate=itemView.findViewById(R.id.tvDate);
             tvCounter=itemView.findViewById(R.id.tvCounter);
+            tvBid=itemView.findViewById(R.id.totalbid);
         }
     }
 
@@ -217,11 +220,10 @@ public class cricketMList extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final cViewHolder cViewHolder, int i) {
 
-            if(mCMatch.get(i).status==0) {
                 final int k = i;
                 cViewHolder.tvTeamA.setText(mCMatch.get(i).teamA);
                 cViewHolder.tvTeamB.setText(mCMatch.get(i).teamB);
-                DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                 final Date date = mCMatch.get(i).date;
                 String formattedDateString = formatter.format(date);
                 cViewHolder.tvDate.setText(formattedDateString);
@@ -276,32 +278,6 @@ public class cricketMList extends Fragment {
 
                 }
 
-             /*   storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamA + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                      new DownLoadImageTask(cViewHolder.ivTeamA).execute(uri.toString());
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
-                });
-                storageRef.child("cricketTeamLogo/" + mCMatch.get(i).teamB + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        new DownLoadImageTask(cViewHolder.ivTeamB).execute(uri.toString());
-
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
-                });*/
-
 
                 Calendar cal = Calendar.getInstance();
                 final Date currentDate = cal.getTime();
@@ -336,6 +312,9 @@ public class cricketMList extends Fragment {
                     }
                 }.start();
 
+
+
+
                 cViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -349,7 +328,7 @@ public class cricketMList extends Fragment {
 
                     }
                 });
-            }
+
 
 
         }

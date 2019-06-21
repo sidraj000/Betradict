@@ -16,7 +16,7 @@
         >
         <ImageView
             android:id="@+id/ivPic"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:src="@mipmap/trollar"
             />

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ValueEventListener;
 import com.vincis.betradict.Class.Match;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.vincis.betradict.Class.Quest;
+import com.vincis.betradict.Class.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ public class adminMList extends Fragment {
     private cListAdapter mAdapter;
     private LinearLayoutManager mManager;
     private DatabaseReference mFriendsReference;
+    public float lastmatch;
 
 
     public adminMList() {
@@ -93,6 +97,11 @@ public class adminMList extends Fragment {
         private DatabaseReference mRef;
         public List<Match> mCMatch=new ArrayList<>();
         public List<String> cId=new ArrayList<>();
+        public List<User> mUser=new ArrayList<>();
+        public List<Float> amtGiven=new ArrayList<>();
+        public List<List<Float>> mAmt= new ArrayList<List<Float>>();
+        public List<Float> mFloat=new ArrayList<>();
+        public List<Quest> mQuest=new ArrayList<>();
 
 
         public cListAdapter(Context context, DatabaseReference ref) {
@@ -104,7 +113,6 @@ public class adminMList extends Fragment {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Match cMatch=dataSnapshot.getValue(Match.class);
-
                         mCMatch.add(cMatch);
                         String key = dataSnapshot.getKey();
                         cId.add(key);
@@ -148,6 +156,40 @@ public class adminMList extends Fragment {
 
                 }
             });
+            final DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("users");
+            databaseReference.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    final int index;
+                    User user=dataSnapshot.getValue(User.class);
+                    DatabaseReference md=FirebaseDatabase.getInstance().getReference();
+                   md.child("users").child(user.per.uid).child("wallet").child("lastmatch").setValue(0);
+                    mUser.add(user);
+                    mAmt.add(mFloat);
+
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
 
         @NonNull
@@ -160,9 +202,77 @@ public class adminMList extends Fragment {
             return new cViewHolder(view);
         }
         @Override
-        public void onBindViewHolder(@NonNull final cViewHolder cViewHolder, int i) {
-
+        public void onBindViewHolder(@NonNull final cViewHolder cViewHolder,final int i) {
+            List<Float> data=new ArrayList<>();
+            data.add((float) 0.1);
+            mAmt.add(data);
             if (mCMatch.get(i).status == 0) {
+                for(int index=0;index<mUser.size();index++)
+                {
+                    mAmt.get(i).add(index, (float) 0.1);
+                    final int ind=index;
+                    DatabaseReference md = FirebaseDatabase.getInstance().getReference();
+                    md.child("quest_usr").child(mUser.get(index).per.uid).child("cricket").child(mCMatch.get(i).id).child("normal").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                            Quest quest=dataSnapshot.getValue(Quest.class);
+                            if(!quest.amtearned.equals(null)) {
+                                mAmt.get(i).set(ind, (float) mAmt.get(i).get(ind) + quest.amtearned - quest.mybid);
+                            }
+
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    md.child("quest_usr").child(mUser.get(index).per.uid).child("cricket").child(mCMatch.get(i).id).child("live").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                            Quest quest=dataSnapshot.getValue(Quest.class);
+                            if(!quest.amtearned.equals(null)) {
+                                mAmt.get(i).set(ind, mAmt.get(i).get(ind) + quest.amtearned - quest.mybid);
+                            }
+
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
                 final int k = i;
                 cViewHolder.tvTeamA.setText(mCMatch.get(i).teamA);
                 cViewHolder.tvTeamB.setText(mCMatch.get(i).teamB);
@@ -170,9 +280,16 @@ public class adminMList extends Fragment {
                 cViewHolder.btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DatabaseReference md = FirebaseDatabase.getInstance().getReference();
-                        md.child("match").child("cricket").child(mCMatch.get(k).id).child("status").setValue(1);
+                        lastmatch=0;
+                        DatabaseReference md2=FirebaseDatabase.getInstance().getReference();
+                        md2.child("match").child("cricket").child(mCMatch.get(k).id).child("status").setValue(1);
                         Toast.makeText(mContext, "Match Stopped", Toast.LENGTH_SHORT).show();
+                      //  md2.child("users").child(mUser.get(i).per.uid).child("wallet").child("lastmatch").setValue(mAmt.get(i));
+                        for(int p=0;p<mUser.size();p++)
+                        {
+                            md2.child("users").child(mUser.get(p).per.uid).child("wallet").child("lastmatch").setValue(mAmt.get(i).get(p));
+                        }
+
                     }
                 });
 
@@ -188,6 +305,7 @@ public class adminMList extends Fragment {
                         DatabaseReference md = FirebaseDatabase.getInstance().getReference();
                         md.child("match").child("cricket").child(mCMatch.get(k).id).child("status").setValue(0);
                         Toast.makeText(mContext, "Match Started", Toast.LENGTH_SHORT).show();
+
                     }
 
                 });

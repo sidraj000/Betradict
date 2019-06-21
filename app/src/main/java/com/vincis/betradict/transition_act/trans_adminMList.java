@@ -13,7 +13,6 @@ public class trans_adminMList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trans_admin_mlist);
-
         FragmentManager fm=getSupportFragmentManager();
         SupportAdminL fragment=new SupportAdminL();
         fm.beginTransaction().replace(R.id.trans_ml,fragment).commit();

@@ -154,13 +154,12 @@ public class update_wallet extends Fragment {
                     // A new comment has been added, add it to the displayed list
                     AllQuest allQuest = dataSnapshot.getValue(AllQuest.class);
                     String key = dataSnapshot.getKey();
-                    if (!allQuest.quest_wall.ans.equals("U")) {
+
 
                         mAllQuest.add(allQuest);
                         mQid.add(key);
 
                         notifyItemInserted(mAllQuest.size() - 1);
-                    }
 
                 }
 
@@ -169,12 +168,12 @@ public class update_wallet extends Fragment {
 
                     AllQuest allQuest = dataSnapshot.getValue(AllQuest.class);
                     String key = dataSnapshot.getKey();
-                    if (!allQuest.quest_wall.ans.equals("U")) {
+
                       int index=mQid.indexOf(key);
                       if(index>-1) {
                           mAllQuest.set(index, allQuest);
                           notifyItemChanged(index);
-                      }
+
                     }
                 }
 
@@ -186,7 +185,7 @@ public class update_wallet extends Fragment {
                     // comment and if so remove it.
                     AllQuest allQuest = dataSnapshot.getValue(AllQuest.class);
                     String userKey = dataSnapshot.getKey();
-                    if (!allQuest.quest_wall.ans.equals("U")) {
+
                         // [START_EXCLUDE]
                         int userIndex = mQid.indexOf(userKey);
                         if (userIndex > -1) {
@@ -200,7 +199,7 @@ public class update_wallet extends Fragment {
                         } else {
                             Log.w(TAG, "onChildRemoved:unknown_child:" + userKey);
                         }
-                    }
+
                     // [END_EXCLUDE]
                 }
 
@@ -251,7 +250,13 @@ public class update_wallet extends Fragment {
                 friendViewHolder.tvProfit.setText(Float.toString(mAllQuest.get(i).quest_wall.profit));
             }
             else {
-                friendViewHolder.btnWallet.setVisibility(View.VISIBLE);
+                if(mAllQuest.get(i).quest_wall.ans.equals("U"))
+                {
+                    friendViewHolder.btnWallet.setVisibility(View.GONE);
+                }
+                else {
+                    friendViewHolder.btnWallet.setVisibility(View.VISIBLE);
+                }
                 friendViewHolder.tvquest.setText(mAllQuest.get(i).ques);
                 friendViewHolder.tvBids1.setText(Float.toString(mAllQuest.get(i).quest_wall.bids1));
                 friendViewHolder.tvBids2.setText(Float.toString(mAllQuest.get(i).quest_wall.bids2));
@@ -281,6 +286,7 @@ public class update_wallet extends Fragment {
 
                                         DatabaseReference sd = FirebaseDatabase.getInstance().getReference();
                                         sd.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("quest_wall").child("wStatus").setValue(1);
+                                        sd.child("quest_usr").child(u.uid).child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("amtearned").setValue(add);
                                         updatewallet(add, u.uid, mAllQuest.get(k).qid);
 
 
@@ -291,6 +297,8 @@ public class update_wallet extends Fragment {
                                         updatewallet(add, u.uid, mAllQuest.get(k).qid);
                                         DatabaseReference sd = FirebaseDatabase.getInstance().getReference();
                                         sd.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("quest_wall").child("wStatus").setValue(1);
+                                        sd.child("quest_usr").child(u.uid).child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("amtearned").setValue(add);
+
 
 
                                     } else if (mAllQuest.get(k).quest_wall.ans.equals("C")) {
@@ -300,7 +308,7 @@ public class update_wallet extends Fragment {
                                         updatewallet(add, u.uid, mAllQuest.get(k).qid);
                                         DatabaseReference sd = FirebaseDatabase.getInstance().getReference();
                                         sd.child("quest").child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("quest_wall").child("wStatus").setValue(1);
-
+                                        sd.child("quest_usr").child(u.uid).child(arr[0]).child(arr[1]).child(arr[2]).child(mAllQuest.get(k).qid).child("amtearned").setValue(add);
 
                                     }
                                 }

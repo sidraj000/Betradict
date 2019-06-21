@@ -363,7 +363,7 @@ public class login_act extends AppCompatActivity  {
         Calendar cal = Calendar.getInstance();
         Date currentDate = cal.getTime();
         li.add(new transactions(0,"u","u",currentDate, "u"));
-        Wallet wall=new Wallet(1000,li);
+        Wallet wall=new Wallet(1000,0,li);
         User usr = new User(details,wall);
         mDatabase.child("users").child(userId).setValue(usr);
 

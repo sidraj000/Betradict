@@ -8,13 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.vincis.betradict.admin.Add_answers;
 import com.vincis.betradict.admin.update_wallet;
 import com.vincis.betradict.frags.frag2;
-import com.vincis.betradict.frags.frag3;
-import com.vincis.betradict.frags.frag4;
 import com.vincis.betradict.frags.scoreFragment;
 
-class PagerViewAdapter extends FragmentPagerAdapter{
+public class PagerViewAdapter2 extends FragmentPagerAdapter {
     Bundle bd;
-    public PagerViewAdapter(FragmentManager fm,Bundle b) {
+    public PagerViewAdapter2(FragmentManager fm, Bundle b) {
         super(fm);
         bd=b;
     }
@@ -26,27 +24,16 @@ class PagerViewAdapter extends FragmentPagerAdapter{
         switch (i)
         {
             case 0:
-                   fragment= new fragtransactiondetails();
-                   fragment.setArguments(bd);
-                   break;
+                fragment= new playinng11details();
+                fragment.setArguments(bd);
+                break;
 
 
-                case 1:
-                   fragment=new scoreFragment();
-                   fragment.setArguments(bd);
-                   break;
-            case 2:
-                fragment=new frag2();
+            case 1:
+                fragment=new scoreFragment();
                 fragment.setArguments(bd);
                 break;
-      case 3:
-                fragment=new update_wallet();
-                fragment.setArguments(bd);
-                break;
-            case 4:
-                fragment=new Add_answers();
-                fragment.setArguments(bd);
-                break;
+
 
         }
         return fragment;

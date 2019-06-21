@@ -33,7 +33,7 @@
         android:title="LogOut"
         android:fontFamily="@font/aldrich"
         android:icon="@mipmap/logout"></item>
-   <!-- <item
+    <item
           android:id="@+id/write_quest"
           android:title="Add Quest"
           android:fontFamily="@font/aldrich"></item>
@@ -56,5 +56,8 @@
         android:title="Stop Match"
         android:fontFamily="@font/aldrich">
     </item>
--->
+    <item
+        android:id="@+id/operation"
+        android:title="Operation"
+        ></item>
 </menu>

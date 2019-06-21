@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tvteam1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dip"
+        android:paddingTop="6dip"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:text="hii"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvteam2"
+        android:layout_width="fill_parent"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dip"
+        android:text="hii"
+         />
+
+    <TextView
+        android:id="@+id/tvdatematch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dip"
+        android:text="hii"
+        android:textColor="@color/colorAccent" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addMatchButton"
+        android:layout_gravity="center"
+        android:text="addMatch"/>
+
+</LinearLayout>

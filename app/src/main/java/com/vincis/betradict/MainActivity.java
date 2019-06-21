@@ -71,15 +71,15 @@ TextView tvU;
         {
             btnToggle.setImageResource(R.drawable.in);
         }
-        else {
+        else
+            {
             btnToggle.setImageResource(R.drawable.back);
-        }
+            }
         btnToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(data[2].equals("normal"))
                 {
-                  //  Toast.makeText(MainActivity.this, "hii", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(MainActivity.this,MainActivity.class);
                     data[2]="live";
                     intent.putExtra("details",data);

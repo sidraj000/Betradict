@@ -171,7 +171,6 @@ public class frag4 extends Fragment {
     }
 
 
-
     private static class FriendViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvquest, tvRate1, tvRate2, tvRate3;
@@ -238,26 +237,6 @@ public class frag4 extends Fragment {
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                    Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
-
-                    // A comment has changed, use the key to determine if we are displaying this
-                    // comment and if so displayed the changed comment.
-                    Quest quest = dataSnapshot.getValue(Quest.class);
-                    String userKey = dataSnapshot.getKey();
-                    int userIndex = mQuestIds.indexOf(userKey);
-
-
-                        // [START_EXCLUDE]
-
-                        if (userIndex > -1) {
-                            // Replace with the new data
-                            mQuest.set(userIndex, quest);
-
-                            // Update the RecyclerView
-                            notifyItemChanged(userIndex);
-                        } else {
-
-                        }
 
                 }
 
@@ -336,8 +315,12 @@ public class frag4 extends Fragment {
 
 
 
-            if(!quest.cans.equals("U"))
+            if(quest.cans.equals("U"))
             {
+                friendViewHolder.etAmt.setVisibility(View.VISIBLE);
+
+            }
+            else {
                 friendViewHolder.etAmt.setVisibility(View.GONE);
             }
 
@@ -752,16 +735,6 @@ public class frag4 extends Fragment {
                 }
             });
 
-
-             //   friendViewHolder.ivStatus.setVisibility(View.VISIBLE);
-                friendViewHolder.etAmt.setVisibility(View.GONE);
-
-
-          if(quest.status==0)
-          {
-             //   friendViewHolder.ivStatus.setVisibility(View.GONE);
-                friendViewHolder.etAmt.setVisibility(View.VISIBLE);
-            }
             friendViewHolder.btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

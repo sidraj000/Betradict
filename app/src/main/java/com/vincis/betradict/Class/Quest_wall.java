@@ -3,6 +3,7 @@ package com.vincis.betradict.Class;
 public class Quest_wall
 {
 
+
     public float bids1;
     public float bids2;
     public float bids3;

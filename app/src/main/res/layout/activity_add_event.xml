@@ -1,127 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/addeve"
     tools:context=".admin.addEvent" >
 
-    <Spinner
-        android:id="@+id/spGame"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:ems="10" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/etYear"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Year"
-            android:inputType="number" />
-        <EditText
-            android:id="@+id/etMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Month"
-            android:inputType="number" />
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        <EditText
-            android:id="@+id/etDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Date"
-            android:inputType="number" />
-        <EditText
-            android:id="@+id/etHrs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Hrs"
-            android:inputType="number" />
-        </LinearLayout>
-            <LinearLayout
+            android:indeterminate="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/responseView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-        <EditText
-            android:id="@+id/etMin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:hint="Min"
-            android:inputType="number" />
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
-
-
-
-    <EditText
-        android:id="@+id/etId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-       android:hint="Id"/>
-
-    <EditText
-        android:id="@+id/etTeamA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="TeamA" />
-
-    <EditText
-        android:id="@+id/etTeamB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="TeamB" />
-
-    <Button
-        android:id="@+id/btnSubEvent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="100dp"
-        android:text="Submit"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="#FFFFFF"/>
-
-
-</LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>
